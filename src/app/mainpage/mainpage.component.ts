@@ -19,7 +19,7 @@ export class MainpageComponent implements OnInit {
     this.readAllfigures();
   }
 
-  trackByData(index: number, figure: Figure): string { return figure._id; }
+  trackByData(index: number, figure: Figure): number { return figure._id; }
 
   readAllfigures(): void {
     this.bs.getAllfigures().subscribe(

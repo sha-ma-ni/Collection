@@ -1,18 +1,18 @@
 export interface Figure {
-  _id: string,
+  _id: number,
   name: string,
   topic: string,
   articleNumber: string,
-  purchasePrice: string,
-  salePrice: string,
+  purchasePrice: number,
+  salePrice: number,
   // purchaseDatum: Date
 }
 
 export interface Set {
-  _id: string,
+  _id: number,
   name: string,
   articleNumber: string,
-  purchasePrice: string,
-  salePrice: string,
+  purchasePrice: number,
+  salePrice: number,
   // purchaseDatum: Date
 }

@@ -12,7 +12,7 @@ import { SetComponent } from './sets/set/set.component';
 import { AllsetsComponent } from './sets/allsets/allsets.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { EditfigureComponent } from './figures/editfigure/editfigure.component';
+
 import { DeleteFigureComponent } from './figures/delete-figure/delete-figure.component';
 import { FiguresComponent } from "./figures/figures.component";
 import {NgxBootstrapIconsModule} from "ngx-bootstrap-icons";
@@ -36,7 +36,7 @@ const icons = {
     AllsetsComponent,
     LoginComponent,
     RegisterComponent,
-    EditfigureComponent,
+
     DeleteFigureComponent,
     FiguresComponent,
   ],

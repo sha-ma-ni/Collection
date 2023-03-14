@@ -30,7 +30,7 @@ export class BackendserviceService {
   //   return this.http.get<Figure>(this.baseUrl + 'figure/' + id);
   // }
 
-  deletefigure(id: string): void {
+  deletefigure(id: number): void {
     this.http.delete<Figure>(this.baseUrl + 'figure/' + id)
       .subscribe(
         response => {
@@ -42,19 +42,19 @@ export class BackendserviceService {
         });
   }
 
-  updatefigure(id: string, figure: Figure): void {
-    this.http.patch<Figure>(this.baseUrl + 'editfigure/' + id, figure)
-      .subscribe(
-        response => {
-          console.log(response);
-          console.log(response._id);
-        },
-        error => {
-          console.log(error);
-        });
-    // Observable<Figure> {
-    // return this.http.patch<Figure>(this.baseUrl + 'allfigures/' + id, figure);
-  }
+  // updatefigure(id: string, figure: Figure): void {
+  //   this.http.patch<Figure>(this.baseUrl + 'editfigure/' + id, figure)
+  //     .subscribe(
+  //       response => {
+  //         console.log(response);
+  //         console.log(response._id);
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       });
+  //   // Observable<Figure> {
+  //   // return this.http.patch<Figure>(this.baseUrl + 'allfigures/' + id, figure);
+  // }
 
   createfigure(figure: Figure): void {
     this.http.post<Figure>(this.baseUrl + 'figure', figure)
@@ -67,7 +67,7 @@ export class BackendserviceService {
         });
   }
 
-  getFigureById(id: string): Observable < Figure > {
+  getFigureById(id: number): Observable < Figure > {
       return this.http.get<Figure>(this.baseUrl + 'editfigure/' + id)
     }
   }

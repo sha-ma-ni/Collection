@@ -26,17 +26,17 @@ export class AddFigureComponent implements OnInit {
         nameControl: ['', Validators.required],
         topicControl: ['', Validators.required],
         articleNumberControl: ['', Validators.required],
-        purchasePriceControl: ['', Validators],
-        salePriceControl: ['', Validators],
+        purchasePriceControl: [''],
+        salePriceControl: [''],
       });
-    this.figure = {_id: '0', name: '', topic: '', salePrice: '', purchasePrice: '', articleNumber: ''};
+    this.figure = {_id: 0, name: '', topic: '', salePrice: 0 , purchasePrice: 0, articleNumber: ''};
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     console.warn(this.form.value);
+
     const values = this.form.value;
     this.figure.name = values.nameControl;
     this.figure.topic = values.topicControl;

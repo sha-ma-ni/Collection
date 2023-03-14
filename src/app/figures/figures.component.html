@@ -30,7 +30,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let figure of figures; let i=index; trackBy: trackByData">
+      <tr *ngFor="let figure of figures; let i=index">
+       <!--trackBy: trackByData">-->
         <td class="tg-dat">{{i + 1}}</td>
         <td class="tg-dat">{{figure.name}}</td>
         <td class="tg-dat">{{figure.articleNumber}}</td>
@@ -38,7 +39,7 @@
         <td class="tg-dat">{{figure.salePrice}}</td>
         <td class="tg-none"><a [routerLink]="['/figure', figure._id]"><span class="bi bi-pencil-square px-5"></span></a>
         </td>
-        <td class="tg-none"><span (click)="delete(figure._id)" class=" bi bi-trash px-5 "></span></td>
+        <td class="tg-none"><span (click)="open(content,figure._id)" class=" bi bi-trash px-5 "></span></td>
       </tr>
       </tbody>
     </table>

@@ -4,8 +4,8 @@ const figureSchema = new mongoose.Schema({
   name: String,
   articleNumber: String,
   topic: String,
-  purchasePrice: String,
-  salePrice: String,
+  purchasePrice: Number,
+  salePrice: Number,
   // itemImage: fileHandle[],
 });
 

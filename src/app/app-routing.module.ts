@@ -7,7 +7,7 @@ import { LoginComponent } from "./login/login.component";
 import { FiguresComponent } from './figures/figures.component';
 import { AllsetsComponent } from "./sets/allsets/allsets.component";
 import { RegisterComponent } from "./register/register.component";
-import { EditfigureComponent} from "./figures/editfigure/editfigure.component";
+
 
 const routes: Routes = [
   {
