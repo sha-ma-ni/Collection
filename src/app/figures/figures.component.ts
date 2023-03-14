@@ -82,18 +82,18 @@ export class FiguresComponent implements OnInit {
     window.location.reload();
   }
 
-  open(content, id: number): void {
-    this.readOneFig(id);
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      if (result === 'delete')
-      {
-        this.deleteOne(this.article?.id);
-      }else {
-        location.reload()
-      }
-    });
-  }
+  // open(content, id: number): void {
+  //   this.readOneFig(id);
+  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //     if (result === 'delete')
+  //     {
+  //       this.deleteOne(this.article?.id);
+  //     }else {
+  //       location.reload()
+  //     }
+  //   });
+  // }
 
   // update( figure: Figure): void {
   //   this.figure = figure;
