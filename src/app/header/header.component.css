@@ -1,0 +1,23 @@
+/*Navi panel*/
+#navleftpart.col-8 a{
+  font-family: "Courier New";
+  font-size: large;
+  margin-right: 4%;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  padding-left: 2%;
+}
+#navleftpart.col-8 a:hover, #navrightpart.col-4 a:hover{
+  background-color: #1C365E;
+  color: white;
+  padding: 1%;
+  border-radius: 2px;
+}
+#navleftpart.col-8, #navrightpart.col-4{
+  background-color:rgba(217, 217, 217, 0.8);
+}
+#navrightpart.col-4 a{
+  text-decoration: none;
+  color: black;
+}

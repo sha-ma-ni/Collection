@@ -1,0 +1,30 @@
+/*left*/
+#lbutton0, #lbutton1, #lbutton2, #lbutton3, #cbutton1,#rbutton1, #rbutton2, #rbutton3, #buttonlist {
+  width: 80%;
+  margin-left: 10%;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  background: #1C365E;
+  border-radius: 5px;
+  margin-bottom: 5%;
+}
+#ltitle, #ctitle,#rtitle {
+  text-align: center;
+}
+#leftblock,#centerblock,#rightblock {
+  margin-top: 10%;
+
+}
+#center, #right, #left {
+  box-shadow: 1px 1px 3px 2px dimgray;
+  width: 28%;
+  height: 70vh;
+  margin-left: 4%;
+  margin-top: 5%;
+  border-radius: 5px;
+  margin-bottom: 3.8%;
+}
+
+
+
+

@@ -1,0 +1,50 @@
+#tabletitel{
+  padding-top: 5%;
+  text-align: center;
+  font-family: "Courier New", sans-serif;
+  font-size: 40px;
+}
+table.tg{
+  width: 80%;
+  height: 10%;
+  margin-left: 10%;
+}
+.tg {
+  margin-top: 2%;
+  border-collapse: collapse;
+  background-color: rgba(217, 217, 217, 0.8);
+  /*border-spacing: 0;*/
+  /*border-radius: 5px;*/
+}
+
+.tg td {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 5px 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  word-break: normal;
+}
+
+.tg th {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 10px 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  word-break: normal;
+}
+
+.tg .tg-dat {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+  text-align: right
+}
+.tg .tg-tit {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}

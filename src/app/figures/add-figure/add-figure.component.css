@@ -1,0 +1,77 @@
+#registertitel{
+  font-family: "Courier New";
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+  padding-top: 5%;
+  padding-bottom: 4%;
+}
+#box{
+  background: rgba(217, 217, 217, 0.8);
+  /*background-color: green;*/
+  width: 50%;
+  height: 72%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px grey;
+  margin-left: 30%;
+  /*margin-top: 10%;*/
+}
+#mainbox.row{
+  width: 85%;
+  margin-left: 5%;
+}
+#fName, #bPrice, #ANum,#sPrice, #topic{
+  margin: 0% 0% 5% 0%;
+  border-radius: 5px;
+  width: 100%;
+}
+label{
+  font-family: "Courier New";
+  margin: 0% 0% 1% 0%;
+}
+#cancel, #save{
+  margin-top: 15%;
+  /*text-align: center;*/
+  padding: 1%;
+  margin-left: 20%;
+  border-radius: 5px;
+  width: 50%;
+
+}
+#cancel{
+  margin-left: 40%;
+  /*margin-right: 5%;*/
+  background-color:rgba(128, 128, 128, 0.9);
+  box-shadow: 1px 1px 1px 1px dimgray;
+  color: white;
+  border: none;
+}
+#save{
+  color: white;
+  background-color: rgba(28, 54, 94, 0.9);
+  box-shadow: 1px 1px 1px 1px #1C365E;
+  border: none;
+}
+.form-image img{
+  width: 100%;
+  display: none;
+}
+.input-image label{
+  display: block;
+  width: 80%;
+  height: auto;
+  margin-left: 30%;
+  margin-top: 40%;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px 3px #1C365E;
+  color: white;
+  background-color: rgba(28, 54, 94, 0.7);
+  padding: 2%;
+  text-align: center;
+}
+.input-image input{
+  display: none;
+}
+.col-8 input {
+  border:2px solid #1C365E;
+}
