@@ -5,7 +5,6 @@ import {Set} from "./data";
 import {Observable} from "rxjs";
 import {response} from "express";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -26,21 +25,13 @@ export class BackendserviceService {
     return this.http.get<Set[]>(this.baseUrl + 'allsets');
   };
 
-  // getOneFigure(id: string): Observable<Figure> {
-  //   return this.http.get<Figure>(this.baseUrl + 'figure/' + id);
-  // }
-
-  deletefigure(id: number): void {
-    this.http.delete<Figure>(this.baseUrl + 'figure/' + id)
-      .subscribe(
-        response => {
-          console.log(response);
-          console.log(response._id);
-        },
-      error =>  {
-          console.log(error);
-        });
+  getFigureById(id: number): Observable<Figure> {
+    return this.http.get<Figure>(this.baseUrl + 'figures/' + id)
   }
+
+  deletefigure(id: number): Observable<Figure> {
+    return this.http.delete<Figure>(this.baseUrl + 'figures/' + id)
+   }
 
   // updatefigure(id: string, figure: Figure): void {
   //   this.http.patch<Figure>(this.baseUrl + 'editfigure/' + id, figure)
@@ -67,7 +58,5 @@ export class BackendserviceService {
         });
   }
 
-  getFigureById(id: number): Observable < Figure > {
-      return this.http.get<Figure>(this.baseUrl + 'editfigure/' + id)
-    }
-  }
+
+}

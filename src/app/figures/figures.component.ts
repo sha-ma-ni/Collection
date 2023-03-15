@@ -5,6 +5,8 @@ import {BackendserviceService} from "../shared/backendservice.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Observable} from "rxjs";
+import {response} from "express";
 
 
 @Component({
@@ -23,16 +25,17 @@ export class FiguresComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bs: BackendserviceService,
-    config: NgbModalConfig,
+    private router: Router,
+    // config: NgbModalConfig,
     private fb: FormBuilder,
     private modalService: NgbModal,
     // private location: Location,
-    private router: Router,
     private error: HttpErrorResponse,
+
   ) {
     // Konfiguration des modalen Dialogs
-    config.backdrop = 'static';   // schliesst nicht, wenn man in das Fenster dahinter klickt
-    config.keyboard = false;      // Modaler Dialog kann nicht durch ESC beendet werden
+    // config.backdrop = 'static';   // schliesst nicht, wenn man in das Fenster dahinter klickt
+    // config.keyboard = false;      // Modaler Dialog kann nicht durch ESC beendet werden
     // Formular fuer delete
     this.form = this.fb.group(
       {
@@ -54,11 +57,6 @@ export class FiguresComponent implements OnInit {
     // }
   }
 
-  //to help ngFor identify unique items in array
-  trackByData(index: number, figure: Figure): number {
-    return figure._id;
-  }
-
   readAllfigures(): void {
     this.bs.getAllfigures().subscribe(
       {
@@ -72,36 +70,45 @@ export class FiguresComponent implements OnInit {
       })
   }
 
-  readOneFig(id: number): void {
-    this.bs.getFigureById(id).subscribe(
-      (response: Figure) => this.figure = response,
-      error => this.error = error,
-    );
+  //to help ngFor identify unique items in array
+  trackByData(index: number, figure: Figure): number {
+    return figure._id;
   }
 
-  deletefigure(id: number): void {
-    this.bs.deletefigure(id);
-    window.location.reload();
-  }
-
-  open(content: any, id: number): void {
-    this.readOneFig(id);
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      if (result === 'delete') {
-        this.deletefigure(this.figure?._id);
-      } else {
-        location.reload()
-      }
-    });
-  }
-
-  // update( figure: Figure): void {
-  //   this.figure = figure;
-  //   this.bs.updatefigure(this.figure._id, this.figure);
-  //   this.router.navigateByUrl('/allfigures')
-  //
+  // readOneFig(id: number): void {
+  //   this.bs.getFigureById(id).subscribe(
+  //     (response: Figure) => this.figure = response,
+  //     error => this.error = error,
+  //   );
   // }
 
+
+  deleteFigure(id: number): void {
+    this.bs.deletefigure(id).subscribe(
+      {
+        next: (response) => {
+          console.log('response : ', response);
+        },
+        error: (err) => console.log(err),
+        complete: () => console.log('deleteOne() completed')
+      }
+    )
+  }
+
+  // open(content: any, id: number): void {
+  //   this.readOneFig(id);
+  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  //     this.result = `Closed with: ${result}`;
+  //     if (closeResult === 'delete') {
+  //       this.deleteFigure(this.figure?._id);
+  //     } else {
+  //       location.reload()
+  //     }
+  //   });
+  // }
+
+  openModal() {
+    const dialogConfirm = new MatDialogConfig();
+  }
 }
 
