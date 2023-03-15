@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Figure} from "../shared/data";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BackendserviceService} from "../shared/backendservice.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -11,39 +12,36 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './figures.component.html',
   styleUrls: ['./figures.component.css']
 })
+
 export class FiguresComponent implements OnInit {
   figures!: Figure [];
   figure!: Figure;
   // selectedfigureId: string;
-  // form: FormGroup;
-  // error: HttpErrorResponse | undefined;
-  error: HttpErrorResponse | undefined;
-
-
-
-
+  form: FormGroup;
+  closeResult = '';
 
   constructor(
     private route: ActivatedRoute,
     private bs: BackendserviceService,
-    // config: NgbModalConfig,
-    // private fb: FormBuilder,
+    config: NgbModalConfig,
+    private fb: FormBuilder,
     private modalService: NgbModal,
     // private location: Location,
-    // private router: Router,
+    private router: Router,
+    private error: HttpErrorResponse,
   ) {
     // Konfiguration des modalen Dialogs
-    // config.backdrop = 'static';   // schliesst nicht, wenn man in das Fenster dahinter klickt
-    // config.keyboard = false;      // Modaler Dialog kann nicht durch ESC beendet werden
+    config.backdrop = 'static';   // schliesst nicht, wenn man in das Fenster dahinter klickt
+    config.keyboard = false;      // Modaler Dialog kann nicht durch ESC beendet werden
     // Formular fuer delete
-    // this.form = this.fb.group(
-    //   {
-    //     nameControl: ['', Validators.required],
-    //     topicControl: ['', Validators.required],
-    //     articleNumberControl: ['', Validators.required],
-    //     purchasePriceControl: ['', Validators],
-    //     salePriceControl: ['', Validators],
-    //   });
+    this.form = this.fb.group(
+      {
+        nameControl: ['', Validators.required],
+        topicControl: ['', Validators.required],
+        articleNumberControl: ['', Validators.required],
+        purchasePriceControl: [''],
+        salePriceControl: [''],
+      });
   };
 
   ngOnInit(): void {
@@ -55,14 +53,18 @@ export class FiguresComponent implements OnInit {
     //   this.readOne(this.selectedfigureId);
     // }
   }
-  // trackByData(index: number, figure: Figure): string { return figure._id; }
+
+  //to help ngFor identify unique items in array
+  trackByData(index: number, figure: Figure): number {
+    return figure._id;
+  }
 
   readAllfigures(): void {
     this.bs.getAllfigures().subscribe(
       {
         next: (response) => {
           this.figures = response;
-          console.log (this.figures);
+          console.log(this.figures);
           return this.figures;
         },
         error: (err) => console.log(err),
@@ -70,9 +72,9 @@ export class FiguresComponent implements OnInit {
       })
   }
 
-  readOneFig(id: number) : void {
+  readOneFig(id: number): void {
     this.bs.getFigureById(id).subscribe(
-      (response: Figure)=>this.figure=response,
+      (response: Figure) => this.figure = response,
       error => this.error = error,
     );
   }
@@ -82,18 +84,17 @@ export class FiguresComponent implements OnInit {
     window.location.reload();
   }
 
-  // open(content, id: number): void {
-  //   this.readOneFig(id);
-  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-  //     this.closeResult = `Closed with: ${result}`;
-  //     if (result === 'delete')
-  //     {
-  //       this.deleteOne(this.article?.id);
-  //     }else {
-  //       location.reload()
-  //     }
-  //   });
-  // }
+  open(content: any, id: number): void {
+    this.readOneFig(id);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      if (result === 'delete') {
+        this.deletefigure(this.figure?._id);
+      } else {
+        location.reload()
+      }
+    });
+  }
 
   // update( figure: Figure): void {
   //   this.figure = figure;
@@ -101,5 +102,6 @@ export class FiguresComponent implements OnInit {
   //   this.router.navigateByUrl('/allfigures')
   //
   // }
+
 }
 
