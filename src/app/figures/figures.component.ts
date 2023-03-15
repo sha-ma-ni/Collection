@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Figure} from "../shared/data";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BackendserviceService} from "../shared/backendservice.service";
-import {HttpErrorResponse} from "@angular/common/http";
+
 import {NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs";
-import {response} from "express";
+
+
 
 
 @Component({
@@ -26,16 +26,16 @@ export class FiguresComponent implements OnInit {
     private route: ActivatedRoute,
     private bs: BackendserviceService,
     private router: Router,
-    // config: NgbModalConfig,
+    config: NgbModalConfig,
     private fb: FormBuilder,
     private modalService: NgbModal,
     // private location: Location,
-    private error: HttpErrorResponse,
+    // private error: HttpErrorResponse,
 
   ) {
-    // Konfiguration des modalen Dialogs
-    // config.backdrop = 'static';   // schliesst nicht, wenn man in das Fenster dahinter klickt
-    // config.keyboard = false;      // Modaler Dialog kann nicht durch ESC beendet werden
+     // Konfiguration des modalen Dialogs
+        config.backdrop = 'static';   // schliesst nicht, wenn man in das Fenster dahinter klickt
+        config.keyboard = false;      // Modaler Dialog kann nicht durch ESC beendet werden
     // Formular fuer delete
     this.form = this.fb.group(
       {
@@ -75,40 +75,45 @@ export class FiguresComponent implements OnInit {
     return figure._id;
   }
 
-  // readOneFig(id: number): void {
-  //   this.bs.getFigureById(id).subscribe(
-  //     (response: Figure) => this.figure = response,
-  //     error => this.error = error,
-  //   );
-  // }
+
 
 
   deleteFigure(id: number): void {
-    this.bs.deletefigure(id).subscribe(
+    this.bs.deleteFigure(id).subscribe(
       {
         next: (response) => {
           console.log('response : ', response);
         },
         error: (err) => console.log(err),
         complete: () => console.log('deleteOne() completed')
+      });
+    window.location.reload();
+  }
+
+  openModal(content: any, id: number): void {
+
+    this.readOneFig(id);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      if (result === 'delete') {
+        this.deleteFigure(this.figure?._id);
+      } else {
+        location.reload();
       }
-    )
+    });
   }
 
-  // open(content: any, id: number): void {
-  //   this.readOneFig(id);
-  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-  //     this.result = `Closed with: ${result}`;
-  //     if (closeResult === 'delete') {
-  //       this.deleteFigure(this.figure?._id);
-  //     } else {
-  //       location.reload()
-  //     }
-  //   });
-  // }
-
-  openModal() {
-    const dialogConfirm = new MatDialogConfig();
+  readOneFig(id: number): void {
+    this.bs.getFigureById(id).subscribe({
+      next: (response) => {
+        this.figure = response;
+        console.log(this.figure);
+        return this.figure;
+      },
+      error: (err) => console.log(err),
+      complete: () => console.log('readOneFig() completed' + this.figure._id)
+    });
   }
+
 }
 

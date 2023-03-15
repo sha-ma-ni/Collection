@@ -26,10 +26,10 @@ export class BackendserviceService {
   };
 
   getFigureById(id: number): Observable<Figure> {
-    return this.http.get<Figure>(this.baseUrl + 'figures/' + id)
+    return this.http.get<Figure>(this.baseUrl + 'allfigures/' + id)
   }
 
-  deletefigure(id: number): Observable<Figure> {
+  deleteFigure(id: number): Observable<Figure> {
     return this.http.delete<Figure>(this.baseUrl + 'figures/' + id)
    }
 
@@ -43,9 +43,12 @@ export class BackendserviceService {
   //       error => {
   //         console.log(error);
   //       });
-  //   // Observable<Figure> {
-  //   // return this.http.patch<Figure>(this.baseUrl + 'allfigures/' + id, figure);
-  // }
+
+
+  updateFigure(id: string, figure: Figure):
+    Observable<Figure> {
+    return this.http.patch<Figure>(this.baseUrl + 'figures/' + id, figure);
+  }
 
   createfigure(figure: Figure): void {
     this.http.post<Figure>(this.baseUrl + 'figure', figure)

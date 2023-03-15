@@ -19,6 +19,8 @@ import {NgxBootstrapIconsModule} from "ngx-bootstrap-icons";
 import { pencilSquare,trash,boxArrowRight } from 'ngx-bootstrap-icons';
 
 
+
+
 const icons = {
   pencilSquare,
   trash,
@@ -39,6 +41,7 @@ const icons = {
 
     DeleteFigureComponent,
     FiguresComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,8 @@ const icons = {
     ReactiveFormsModule,
     FormsModule,
     NgxBootstrapIconsModule.pick(icons),
+
+
 
   ],
   providers: [],
