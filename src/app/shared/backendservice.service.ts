@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Figure} from "./data";
+import {Figure, User} from "./data";
 import {Set} from "./data";
 import {Observable} from "rxjs";
 import {response} from "express";
@@ -45,9 +45,9 @@ export class BackendserviceService {
   //       });
 
 
-  updateFigure(id: string, figure: Figure):
+  updateFigure(id: number, figure: Figure):
     Observable<Figure> {
-    return this.http.patch<Figure>(this.baseUrl + 'figures/' + id, figure);
+    return this.http.put<Figure>(this.baseUrl + 'figures/' + id, figure);
   }
 
   createfigure(figure: Figure): void {
@@ -60,6 +60,9 @@ export class BackendserviceService {
           console.log(error);
         });
   }
+
+
+
 
 
 }

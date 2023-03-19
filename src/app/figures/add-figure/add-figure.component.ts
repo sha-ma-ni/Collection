@@ -26,8 +26,8 @@ export class AddFigureComponent implements OnInit {
         nameControl: ['', Validators.required],
         topicControl: ['', Validators.required],
         articleNumberControl: ['', Validators.required],
-        purchasePriceControl: [''],
-        salePriceControl: [''],
+        purchasePriceControl: ['',Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
+        salePriceControl: ['', Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
       });
     this.figure = {_id: 0, name: '', topic: '', salePrice: 0 , purchasePrice: 0, articleNumber: ''};
   }

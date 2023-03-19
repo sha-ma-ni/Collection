@@ -12,12 +12,25 @@ import { SetComponent } from './sets/set/set.component';
 import { AllsetsComponent } from './sets/allsets/allsets.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { EditfigureComponent} from "./figures/editfigure/editfigure.component";
 import { DeleteFigureComponent } from './figures/delete-figure/delete-figure.component';
 import { FiguresComponent } from "./figures/figures.component";
 import {NgxBootstrapIconsModule} from "ngx-bootstrap-icons";
 import { pencilSquare,trash,boxArrowRight } from 'ngx-bootstrap-icons';
-
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -38,9 +51,12 @@ const icons = {
     AllsetsComponent,
     LoginComponent,
     RegisterComponent,
-
+    EditfigureComponent,
     DeleteFigureComponent,
     FiguresComponent,
+    NavComponent,
+    ConfirmComponent,
+
 
   ],
   imports: [
@@ -50,8 +66,18 @@ const icons = {
     ReactiveFormsModule,
     FormsModule,
     NgxBootstrapIconsModule.pick(icons),
-
-
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    BrowserAnimationsModule,
 
   ],
   providers: [],

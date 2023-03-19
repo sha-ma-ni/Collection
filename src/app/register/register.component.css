@@ -1,48 +1,51 @@
-.register{
+/*.input {*/
+/*  padding: 1%;*/
+/*  width: 60%;*/
+/*  !*top right bottom left*!*/
+/*  margin: 3% 20% 0% 20%;*/
+/*  box-shadow: 1px 1px 3px 2px dimgray;*/
+/*  border: none;*/
+/*  border-radius: 5px;*/
+/*}*/
+#block {
   background-color: rgba(217, 217, 217, 0.8);
   width: 30%;
   height: 60%;
   margin-left: 35%;
-  margin-top: 3%;
+  margin-top: 0%;
   border-radius: 5px;
   box-shadow: 1px 1px 3px 2px dimgray;
   /*margin-bottom: 15%;*/
 }
-img{
-  margin-top: 3%;
-  width: 90px;
-  height: 110px;
+
+.row {
+  margin-top: 10%;
+  margin-left: 20%;
 }
 
-#firstname, #password, #email, #lastname, #nickname{
-  padding: 1%;
-  width: 60%;
+input {
+  padding: 5%;
+  width: 100%;
   /*top right bottom left*/
-  margin: 3% 20% 0% 20%;
+  margin: 3% 0% 0% 0%;
   box-shadow: 1px 1px 3px 2px dimgray;
   border: none;
   border-radius: 5px;
 }
-#nickname{
-  margin-top: 10%;
-}
-#btnreg, #btncancel{
-  margin-top: 5%;
-  border-radius: 5px;
-  padding: 2% 5% 2% 5%;
-}
-#btnreg{
-  margin-left: 6%;
+
+#submit {
   color: white;
   background-color: rgba(28, 54, 94, 0.8);
   box-shadow: 1px 1px 1px 1px #1C365E;
-  border: none;
+  margin-left: 5%;
+  margin-top: 10%;
+
 }
-#btncancel{
+#cancel {
   font-weight: normal;
   color: black;
   margin-left: 25%;
-  border: none;
+  margin-top: 10%;
   background-color: rgba(217, 217, 217, 0.8);
   box-shadow: 1px 1px 1px 1px dimgray;
 

@@ -16,3 +16,12 @@ export interface Set {
   salePrice: number,
   // purchaseDatum: Date
 }
+
+export interface User {
+  firstname: string,
+  lastname: string,
+  password: string,
+  email: string
+}
+
+

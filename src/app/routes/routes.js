@@ -5,6 +5,7 @@ const User = require('../../models/user');
 const bcrypt = require("bcrypt");
 const Figure = require('../../models/figure')
 
+
 // test
 router.get('/test', async(req, res) => {
   res.send({ message: "Hallo. This is test" });
@@ -25,7 +26,7 @@ router.post('/adduser', async (req, res) => {
     bcrypt.hash(req.body.password, 10).then(
       async (hash) => {
         const newUser = new User({
-          nickname: req.body.nickname,
+          // nickname: req.body.nickname,
           password: hash,
           email: req.body.email,
           firstname: req.body.firstname,
@@ -38,6 +39,13 @@ router.post('/adduser', async (req, res) => {
     res.status(400).json({error: 'nickname and/or email exist(s)'});
   }
 });
+
+router.post('/login', async (req, res) => {
+  const password = await User.findOne({password: req.body.password});
+  const email = await User.findOne({email: req.body.email});
+
+})
+
 
 // get one user via name
 router.get('/users/:nickname', async (req, res) => {
@@ -53,7 +61,7 @@ router.get('/users/:nickname', async (req, res) => {
   }
 });
 
-// get one user via id   НЕ РАБОЬАЕТ!!!!!--------------------------------------------------------
+// get one user via id   -------------------------------------------------------
 router.get('/users/:id', async (req, res) => {
   const userId = await User.findOne({_id: req.params.id});
   console.log(req.params);
@@ -143,7 +151,7 @@ router.get('/sets/:name', async (req, res) => {
   }
 });
 
-// get one set via id   НЕ РАБОТАЕТ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// get one set via id   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 router.get('/allsets/:id', async (req, res) => {
   const setId = await Set.findOne({_id: req.params.id});
   console.log(req.params);
@@ -231,7 +239,6 @@ router.get('/figures/:name', async (req, res) => {
   }
 });
 
-// get one figure via id    НЕ РАБОТАЕТ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 router.get('/allfigures/:id', async (req, res) => {
   const figureId = await Figure.findOne({_id: req.params.id});
   console.log(req.params);

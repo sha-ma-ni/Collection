@@ -12,14 +12,45 @@
     <img rel="icon" src="./../../assets/user-6318008_1920.png">
   </div>
 
-  <!--  &lt;!&ndash;  <div id="login-error-msg-holder">&ndash;&gt;-->
-  <!--  &lt;!&ndash;    <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>&ndash;&gt;-->
-  <!--  &lt;!&ndash;  </div>&ndash;&gt;-->
-  <form class="inputform" action="/auth" method="post">
-    <input type="text" name="username" placeholder="Username" id="username" required>
-    <input type="password" name="password" placeholder="Password" id="password" required>
-    <input id="login" type="submit" value="Login">
-    <input id="btn" type="button" value="Sing up" [routerLink]="'/register'">
+    <!--  <div id="login-error-msg-holder">-->
+    <!--    <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>-->
+    <!--  </div>-->
+<!--  <form class="inputform" action="/auth" method="post">-->
+<!--    <input type="text" name="username" placeholder="Username" id="username" required>-->
+<!--    <input type="password" name="password" placeholder="Password" id="password" required>-->
+<!--    <input id="login" type="submit" value="Login">-->
+<!--    <input id="btn" type="button" value="Sing up" [routerLink]="'/register'">-->
+<!--  </form>-->
+
+  <form  [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <p  style="width: 60%;text-align: center;margin-left: 20%;">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>E-Mail</mat-label>
+          <input matInput placeholder="E-Mail" formControlName="email">
+          <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+            E-Mail <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p style="width: 60%;text-align: center;margin-left: 20%; height: 5vh ">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label >Passwort</mat-label>
+          <input matInput placeholder="Passwort" formControlName="password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+<!--            <mat-icon>{{hide ? '' : ''}}</mat-icon>-->
+          </button>
+        </mat-form-field>
+      </p>
+<!--      <p *ngIf="warning" style="color: red">-->
+<!--        <mat-icon>error</mat-icon>-->
+<!--        Benutzername oder Passwort falsch</p>-->
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Login</button>
+      <input id="btn" type="button" value="Sing up" [routerLink]="'/register'">
+    </mat-card-actions>
+
   </form>
 </div>
 </div>
