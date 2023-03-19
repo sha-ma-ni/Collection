@@ -17,7 +17,7 @@ export class AuthguardGuard implements CanActivate {
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.as.isLoggedin()
     ? true
-      :this.router.parseUrl('/login');
+      :this.router.parseUrl('login');
   }
 
 }

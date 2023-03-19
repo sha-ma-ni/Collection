@@ -40,26 +40,37 @@ router.post('/adduser', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
-  const password = await User.findOne({password: req.body.password});
-  const email = await User.findOne({email: req.body.email});
+router.post('/login', async(req, res) => {
+  const existingUser = await User.findOne( {email: req.body.email});
+  if(existingUser) {
+    bcrypt.compare(req.body.password, existingUser.password).then((result) => {
+      if(result) {
+        res.status(201).json({ message: 'logged in' });
+      } else {
+        res.status(204).send(); // wrong password
+      }
+    })
+      .catch( (err) => res.status(400).json({ error: 'something went wrong' })) // never happens
+  } else {
+    res.status(400).json({ error: 'username does not exist' });
+  }
+});
 
-})
 
 
 // get one user via name
-router.get('/users/:nickname', async (req, res) => {
-  try {
-    const oneUser = await User.findOne({nickname: req.params.nickname});
-    console.log(req.params);
-    res.send(oneUser);
-  } catch {
-    res.status(404);
-    res.send({
-      error: "User does not exist!"
-    });
-  }
-});
+// router.get('/users/:nickname', async (req, res) => {
+//   try {
+//     const oneUser = await User.findOne({nickname: req.params.nickname});
+//     console.log(req.params);
+//     res.send(oneUser);
+//   } catch {
+//     res.status(404);
+//     res.send({
+//       error: "User does not exist!"
+//     });
+//   }
+// });
 
 // get one user via id   -------------------------------------------------------
 router.get('/users/:id', async (req, res) => {

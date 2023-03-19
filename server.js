@@ -13,6 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes);
+app.use('/users', routes)
 
 // Connect to MongoDB instance
 mongoose.connect(process.env.DB_CONNECTION, {dbName: process.env.DATABASE});

@@ -104,6 +104,7 @@ export class RegisterComponent {
   //   this.dialog.open(ConfirmComponent, dialogConfig);
   // }
   cancel(): void {
+
     this.location.back();
   }
 }

@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string): Observable<any>{
-    return this.http.post<User>(this.baseUrl+ 'users/' + email, { password: password });
+    return this.http.post<User>(this.baseUrl+ 'login/', { email: email, password: password });
   }
 
 
