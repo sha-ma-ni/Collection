@@ -11,6 +11,7 @@ export interface Figure {
 export interface Set {
   _id: number,
   name: string,
+  topic: string,
   articleNumber: string,
   purchasePrice: number,
   salePrice: number,

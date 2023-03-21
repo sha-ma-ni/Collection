@@ -20,7 +20,7 @@
   width: 90%;
   margin-left: 5%;
 }
-#Figname, #Figname1, #ArtNum,#ArtNum2, #purDate{
+#Sellprice, #Buyprice, #ArtNum,#Setname, #Topic{
   margin: 0% 0% 5% 0%;
   border-radius: 5px;
 
@@ -29,25 +29,24 @@ label{
   font-family: "Courier New";
 }
 #cancel, #save{
-  margin-top: 5%;
-  text-align: center;
+  margin-top: 15%;
+  /*text-align: center;*/
   padding: 1%;
-  margin-left: 2%;
+  margin-left: 20%;
   border-radius: 5px;
-  width: 25%;
-
+  width: 50%;
 }
 #cancel{
-  margin-left: 20%;
-  margin-right: 5%;
-  background-color:rgba(128, 128, 128, 0.8);
+  margin-left: 40%;
+  /*margin-right: 5%;*/
+  background-color:rgba(128, 128, 128, 0.9);
   box-shadow: 1px 1px 1px 1px dimgray;
   color: white;
   border: none;
 }
 #save{
   color: white;
-  background-color: rgba(28, 54, 94, 0.8);
+  background-color: rgba(28, 54, 94, 0.9);
   box-shadow: 1px 1px 1px 1px #1C365E;
   border: none;
 }

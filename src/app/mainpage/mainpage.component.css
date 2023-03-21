@@ -1,5 +1,5 @@
 /*left*/
-#lbutton0, #lbutton1, #lbutton2, #lbutton3, #cbutton1,#rbutton1, #rbutton2, #rbutton3, #buttonlist {
+#lbutton0, #lbutton1, #lbutton2, #lbutton3, #cbutton1,#rbutton1, #rbutton2, #rbutton3, #buttonlist1, #buttonlist2 {
   width: 80%;
   margin-left: 10%;
   padding-bottom: 3%;
@@ -24,6 +24,7 @@
   border-radius: 5px;
   margin-bottom: 3.8%;
 }
+
 
 
 

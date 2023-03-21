@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {BackendserviceService} from "../shared/backendservice.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../shared/auth.service";
 
@@ -17,6 +16,7 @@ export class LoginComponent implements OnInit {
     email: [null, Validators.required],
     password: [null, Validators.required]
   });
+  warning: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.auth.loginUser(email!, password!).subscribe({
         next: (response) => {
+          this.warning = false;
           this.auth.login(response);
           this.loggedIn = true;
           console.log('login response',response);
@@ -42,10 +43,10 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => {
           console.log('login error',err);
+          this.warning = true;
         },
         complete: () => console.log('login completed')
       }
     )
-
   }
 }

@@ -1,15 +1,4 @@
-/*#main-holder {*/
-/*  width: 50%;*/
-/*  height: 70%;*/
-/*  display: grid;*/
-/*  justify-items: center;*/
-/*  align-items: center;*/
-/*  background: rgba(217, 217, 217, 0.8);*/
-/*  border-radius: 5px;*/
-/*  box-shadow: 0px 0px 5px 2px black;*/
-/*}*/
-
-#btn{
+#btnReg{
   background-color: rgba(217, 217, 217, 0.0);
   border: none;
   font-style: italic;
@@ -19,10 +8,10 @@
 }
 .register{
   background-color: rgba(217, 217, 217, 0.8);
-  width: 30%;
-  height: 44%;
-  margin-left: 35%;
-  margin-top: 5%;
+  width: 40%;
+  height: 65%;
+  margin-left: 25%;
+  margin-top: 2%;
   border-radius: 5px;
   box-shadow: 1px 1px 3px 2px dimgray;
   margin-bottom: 15%;
@@ -31,41 +20,17 @@ img{
   margin-top: 3%;
   width: 90px;
   height: 110px;
+  margin-bottom: 5%;
 }
 .icon{
   text-align: center;
 }
-#username, #password{
-  padding: 1%;
-  width: 60%;
-  /*top right bottom left*/
-  margin: 2% 20% 0% 20%;
-  box-shadow: 1px 1px 3px 2px dimgray;
-  border: none;
-  border-radius: 5px;
-}
-#login, #btn{
-  margin-top: 4%;
-  border-radius: 5px;
-  padding: 1%;
-}
-#login{
-  margin-left: 25%;
-  margin-right: 5%;
-  padding-right: 10%;
-  padding-left: 10%;
 
-
-  color: white;
-  background-color: rgba(28, 54, 94, 0.8);
+login {
   box-shadow: 1px 1px 1px 1px #1C365E;
-  border: none;
 }
-input {
+
+.full-width {
   width: 100%;
-  padding: 2%;
 }
-p {
 
-
-}

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {Figure, User} from "./data";
+import {Injectable} from '@angular/core';
+import {User} from "./data";
 import {Observable} from "rxjs";
 import {HttpClient} from '@angular/common/http';
 
@@ -12,11 +12,13 @@ export class AuthService {
   user!: User | null;
   loggedIn = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  registerUser(user: User): Observable<User>{
+  registerUser(user: User): Observable<User> {
     return this.http.post<User>(this.baseUrl + 'adduser/', user);
   }
+
   isLoggedin(): boolean {
     return this.loggedIn;
   }
@@ -35,13 +37,11 @@ export class AuthService {
     return this.user;
   }
 
-  checkIfExists(email: null | undefined): Observable<User>{
+  checkIfExists(email: null | undefined): Observable<User> {
     return this.http.get<User>(this.baseUrl + 'users/' + email);
   }
 
-  loginUser(email: string, password: string): Observable<any>{
-    return this.http.post<User>(this.baseUrl+ 'login/', { email: email, password: password });
+  loginUser(email: string, password: string): Observable<any> {
+    return this.http.post<User>(this.baseUrl + 'login/', {email: email, password: password});
   }
-
-
 }

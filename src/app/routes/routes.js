@@ -7,8 +7,8 @@ const Figure = require('../../models/figure')
 
 
 // test
-router.get('/test', async(req, res) => {
-  res.send({ message: "Hallo. This is test" });
+router.get('/test', async (req, res) => {
+  res.send({message: "Hallo. This is test"});
 });
 //get all users------------------------------------------------------------------------------
 router.get('/users', async (req, res) => {
@@ -19,10 +19,11 @@ router.get('/users', async (req, res) => {
 
 // post one user - register
 router.post('/adduser', async (req, res) => {
-  const existingUsername = await User.findOne({nickname: req.body.nickname});
+  // const existingUsername = await User.findOne({nickname: req.body.nickname});
   const existingEmail = await User.findOne({email: req.body.email});
   //if the nickname or/and email exist, you can't use this nickname or/and email
-  if (!existingUsername && !existingEmail) {
+  // if (!existingUsername && !existingEmail) {
+  if (!existingEmail) {
     bcrypt.hash(req.body.password, 10).then(
       async (hash) => {
         const newUser = new User({
@@ -36,41 +37,40 @@ router.post('/adduser', async (req, res) => {
         res.send(newUser);
       }).catch(err => res.status(400).json({error: 'user not created'}))
   } else {
-    res.status(400).json({error: 'nickname and/or email exist(s)'});
+    res.status(400).json({error: 'email exist(s)'});
   }
 });
 
-router.post('/login', async(req, res) => {
-  const existingUser = await User.findOne( {email: req.body.email});
-  if(existingUser) {
+router.post('/login', async (req, res) => {
+  const existingUser = await User.findOne({email: req.body.email});
+  if (existingUser) {
     bcrypt.compare(req.body.password, existingUser.password).then((result) => {
-      if(result) {
-        res.status(201).json({ message: 'logged in' });
+      if (result) {
+        res.status(201).json({message: 'logged in'});
       } else {
         res.status(204).send(); // wrong password
       }
     })
-      .catch( (err) => res.status(400).json({ error: 'something went wrong' })) // never happens
+      .catch((err) => res.status(400).json({error: 'something went wrong'})) // never happens
   } else {
-    res.status(400).json({ error: 'username does not exist' });
+    res.status(400).json({error: 'username does not exist'});
   }
 });
 
 
-
 // get one user via name
-// router.get('/users/:nickname', async (req, res) => {
-//   try {
-//     const oneUser = await User.findOne({nickname: req.params.nickname});
-//     console.log(req.params);
-//     res.send(oneUser);
-//   } catch {
-//     res.status(404);
-//     res.send({
-//       error: "User does not exist!"
-//     });
-//   }
-// });
+router.get('/users/:nickname', async (req, res) => {
+  try {
+    const oneUser = await User.findOne({nickname: req.params.nickname});
+    console.log(req.params);
+    res.send(oneUser);
+  } catch {
+    res.status(404);
+    res.send({
+      error: "User does not exist!"
+    });
+  }
+});
 
 // get one user via id   -------------------------------------------------------
 router.get('/users/:id', async (req, res) => {
@@ -118,9 +118,9 @@ router.put('/users/:id', async (req, res) => {
       userUpd.email = req.body.email
     }
 
-    if (req.body.nickname) {
-      userUpd.nickname = req.body.nickname
-    }
+    // if (req.body.nickname) {
+    //   userUpd.nickname = req.body.nickname
+    // }
 
     await User.updateOne({_id: req.params.id}, userUpd);
     res.send(userUpd)
@@ -131,13 +131,13 @@ router.put('/users/:id', async (req, res) => {
 });
 
 // get all Sets-----------------------------------------------------------------------------------------
-router.get('/allsets', async(req, res) => {
+router.get('/allsets', async (req, res) => {
   const allSets = await Set.find();
   res.send(allSets);
 });
 
 // post Set
-router.post('/set', async(req, res) => {
+router.post('/set', async (req, res) => {
   const postset = new Set({
     name: req.body.name,
     articleNumber: req.body.articleNumber,
@@ -217,14 +217,14 @@ router.put('/sets/:id', async (req, res) => {
 });
 
 // get all Figures-----------------------------------------------------------------------------------
-router.get('/allfigures', async(req, res) => {
+router.get('/allfigures', async (req, res) => {
   const allFigures = await Figure.find();
   console.log(allFigures);
   res.send(allFigures);
 });
 
 // post Figure
-router.post('/figure', async(req, res) => {
+router.post('/figure', async (req, res) => {
   const fig = new Figure({
     name: req.body.name,
     topic: req.body.topic,

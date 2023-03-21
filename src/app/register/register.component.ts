@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {User} from "../shared/data";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
@@ -7,7 +7,6 @@ import {ConfirmComponent} from "../confirm/confirm.component";
 import {response} from "express";
 import {AuthService} from "../shared/auth.service";
 import {Location} from "@angular/common";
-import {database} from "ngx-bootstrap-icons";
 
 export interface DialogData {
   headline: string;
@@ -24,11 +23,10 @@ export class RegisterComponent {
   user!: User;
 
   checkPasswords: ValidatorFn = (group: AbstractControl):
-    ValidationErrors | null =>
-  {
+    ValidationErrors | null => {
     let pass = this.registerForm?.get('password')?.value;
     let confirmPass = this.registerForm?.get('passwordrepeat')?.value
-    return pass === confirmPass ? null : { notSame: true }
+    return pass === confirmPass ? null : {notSame: true}
 
   }
 
@@ -43,7 +41,7 @@ export class RegisterComponent {
       Validators.maxLength(20)])
     ],
     passwordrepeat: [null],
-  }, { validators: this.checkPasswords });
+  }, {validators: this.checkPasswords});
 
 
   constructor(
@@ -52,7 +50,8 @@ export class RegisterComponent {
     private dialog: MatDialog,
     private router: Router,
     private location: Location,
-  ) {}
+  ) {
+  }
 
   onSubmit(): void {
     const values = this.registerForm.value;
@@ -84,19 +83,20 @@ export class RegisterComponent {
     this.as.checkIfExists(email).subscribe(
       response => {
         console.log(response);
-        if(response) {
+        if (response) {
           this.openDialog("E-Mail already exist");
         }
       },
-        (error) => {
+      (error) => {
         console.log(error);
       }
     );
   }
 
   openDialog(data: string) {
-    this.dialog.open(ConfirmComponent, { data });
+    this.dialog.open(ConfirmComponent, {data});
   }
+
   // openDialog() {
   //   const dialogConfig = new MatDialogConfig();
   //   dialogConfig.disableClose = true;
@@ -104,7 +104,6 @@ export class RegisterComponent {
   //   this.dialog.open(ConfirmComponent, dialogConfig);
   // }
   cancel(): void {
-
     this.location.back();
   }
 }

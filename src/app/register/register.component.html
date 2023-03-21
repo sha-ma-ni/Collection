@@ -1,75 +1,66 @@
-<link href="register.component.css" rel="stylesheet">
-
-<div style="background-image:  url('./../../assets/toys-950148_1920.jpg');background-size:cover; height: 96vh">
-<div id="block">
-  <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="shipping-card">
-    <mat-card-header>
-      <mat-card-title style="font-size: xxx-large; font-family: 'Courier New'; font-weight: bold; padding-top: 3%; margin-left: 25%; ">Registration</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="First name" formControlName="firstname">
-            <mat-error *ngIf="registerForm.controls['firstname'].hasError('required')">
-              First name <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+<div style="background-image:  url('./../../assets/toys-950148_1920.jpg');background-size:cover; height: 96%">
+  <div style="font-size: xxx-large; font-family: 'Courier New'; font-weight: bold; text-align: center;padding-top: 3%">
+    Welcome to the MEGA Construx collection!
+  </div>
+  <div id="block">
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-card class="shipping-card">
+        <div class="titel" style="height: 80px">
+          <p
+            style="font-size: xx-large; font-family: 'Courier New'; font-weight: bold; padding-top: 0%; text-align: center">
+            Registration</p>
         </div>
-        <div class="col">
-          <mat-form-field class="full-width">
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="First name" formControlName="firstname">
+                <mat-icon matSuffix>person_add</mat-icon>
+                <mat-error style="font-size: 12px" *ngIf="registerForm.controls['firstname'].hasError('required')">
+                  First name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Last name" formControlName="lastname">
+                <mat-icon matSuffix>person_add</mat-icon>
+                <mat-error style="font-size: 12px" *ngIf="registerForm.controls['lastname'].hasError('required')">
+                  Last name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="E-Mail" formControlName="email" (change)="checkIfExists($event.target)">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error style="font-size: 12px" *ngIf="registerForm.controls['email'].hasError('required')">
+                  E-Mail is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
 
-            <input matInput placeholder="Last name" formControlName="lastname">
-
-
-            <mat-error *ngIf="registerForm.controls['lastname'].hasError('required')">
-              Last name <strong>required</strong>
-            </mat-error>
-
-          </mat-form-field>
+            <div class="col">
+              <mat-form-field style="font-size: 12px"
+                              hintLabel="At least 8 characters, at least 1 upper and lower case letter, digit and special character in length"
+                              class="full-width">
+                <input style="font-size: 16px" matInput [type]="hide ? 'password' : 'text'" placeholder="Passwort" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error style="font-size: 12px" *ngIf="registerForm.controls['password'].hasError('required')">
+                  Password is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content><br/>
+        <div class="mat-card-actions" style="text-align: center; margin-bottom: 5%">
+          <button id="cancel" mat-raised-button color="primary" type="btn" (click)="cancel()">Cancel</button>
+          <button id="submit" mat-raised-button color="primary" type="submit">Submit</button>
         </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="E-Mail" formControlName="email" (change)="checkIfExists($event.target)">
-            <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
-              E-Mail <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="col">
-          <mat-form-field hintLabel="Mind. 8 Zeichen, mind. 1 Groß- und Kleinbuchstaben, Ziffer und Sonderzeichen" class="full-width">
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Passwort" formControlName="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
-              Password <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-<!--      <div class="row">-->
-<!--        <div class="col">-->
-<!--          <mat-form-field hintLabel="Dasselbe Passwort wie oben" class="full-width">-->
-<!--            <input matInput  [type]="hide2 ? 'password' : 'text'" placeholder="Passwort wiederholen" formControlName="password2">-->
-<!--            <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">-->
-<!--              <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>-->
-<!--            </button>-->
-<!--            <mat-error *ngIf="registerForm.controls['password2'].hasError('required')">-->
-<!--              Repeat password <strong>required</strong>-->
-<!--            </mat-error>-->
-<!--          </mat-form-field>-->
-<!--        </div>-->
-<!--      </div>-->
-
-    </mat-card-content>
-    <mat-card-actions>
-      <button id="cancel" mat-raised-button color="primary" type="btn" (click)="cancel()">Cancel</button>
-      <button id="submit" mat-raised-button color="primary" type="submit">Submit</button>
-    </mat-card-actions>
-  </mat-card>
-</form>
-</div>
+      </mat-card>
+    </form>
+  </div>
 </div>

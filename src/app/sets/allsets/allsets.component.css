@@ -1,50 +1,60 @@
+@import url('../../../../node_modules/bootstrap-icons/font/bootstrap-icons.css');
+
 #tabletitel{
   padding-top: 5%;
   text-align: center;
   font-family: "Courier New", sans-serif;
   font-size: 40px;
 }
-table.tg{
+#table {
   width: 80%;
-  height: 10%;
   margin-left: 10%;
+  /*height: 200px;*/
+  background-color: rgba(217, 217, 217, 0.9);
+  box-shadow: 1px 1px 1px 2px dimgray;
+  border-radius: 5px;
 }
-.tg {
-  margin-top: 2%;
-  border-collapse: collapse;
-  background-color: rgba(217, 217, 217, 0.8);
-  /*border-spacing: 0;*/
-  /*border-radius: 5px;*/
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 340px;
+  overflow-y: auto;
+  /*width: 100%;*/
+}
+.table-fixed thead, .table-fixed tbody {
+  display: block;
 }
 
-.tg td {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  padding: 5px 5px;
+.table-fixed  td {
   border-style: solid;
   border-width: 1px;
-  overflow: hidden;
-  word-break: normal;
+  border-color: white;
 }
 
-.tg th {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  padding: 10px 5px;
-  border-style: solid;
-  border-width: 1px;
-  overflow: hidden;
-  word-break: normal;
-}
-
-.tg .tg-dat {
+.tg-dat {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
-  text-align: right
+  text-align: left;
+  padding-left: 5%;
+  width:20%;
 }
-.tg .tg-tit {
+.tg-tit{
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
   text-align: center;
   font-weight: bold;
   font-size: 18px;
+  width: 17%;
+}
+
+.table table-fixed.tg-none {
+  width:8%;
+  text-align: center;
+}
+
+
+/*Modal Dialog*/
+#modal-content-wrapper {
+  margin-top: 10%;
+  width: 60%;
+  height: 80%;
 }

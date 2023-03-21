@@ -1,36 +1,18 @@
-/*.input {*/
-/*  padding: 1%;*/
-/*  width: 60%;*/
-/*  !*top right bottom left*!*/
-/*  margin: 3% 20% 0% 20%;*/
-/*  box-shadow: 1px 1px 3px 2px dimgray;*/
-/*  border: none;*/
-/*  border-radius: 5px;*/
-/*}*/
-#block {
+.mat-mdc-card {
   background-color: rgba(217, 217, 217, 0.8);
-  width: 30%;
-  height: 60%;
-  margin-left: 35%;
-  margin-top: 0%;
+  width: 45%;
+  height: 70%;
+  margin-left: 25%;
+  margin-top: 2%;
   border-radius: 5px;
   box-shadow: 1px 1px 3px 2px dimgray;
-  /*margin-bottom: 15%;*/
+  display: flex;
 }
 
-.row {
-  margin-top: 10%;
-  margin-left: 20%;
-}
 
-input {
-  padding: 5%;
-  width: 100%;
-  /*top right bottom left*/
-  margin: 3% 0% 0% 0%;
-  box-shadow: 1px 1px 3px 2px dimgray;
-  border: none;
-  border-radius: 5px;
+.full-width {
+  margin-left: 7%;
+  width: 86%;
 }
 
 #submit {
@@ -38,15 +20,19 @@ input {
   background-color: rgba(28, 54, 94, 0.8);
   box-shadow: 1px 1px 1px 1px #1C365E;
   margin-left: 5%;
-  margin-top: 10%;
-
+  margin-top: 2%;
 }
 #cancel {
   font-weight: normal;
   color: black;
-  margin-left: 25%;
-  margin-top: 10%;
+  /*margin-left: 35%;*/
+  margin-top: 2%;
   background-color: rgba(217, 217, 217, 0.8);
   box-shadow: 1px 1px 1px 1px dimgray;
-
+}
+mat-mdc-card-actions mdc-card__actions{
+  text-align: center;
+}
+p _ngcontent-dfr-c183{
+  margin: -16px;
 }
