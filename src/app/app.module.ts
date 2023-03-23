@@ -34,6 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
+
+
 const icons = {
   pencilSquare,
   trash,
@@ -78,6 +80,7 @@ const icons = {
     MatCardModule,
     BrowserAnimationsModule,
     NgbModule,
+
 
   ],
   providers: [],

@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Figure, User} from "./data";
 import {Set} from "./data";
 import {Observable} from "rxjs";
-import {response} from "express";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class BackendserviceService {
     return this.http.get<Figure[]>(this.baseUrl + 'allfigures');
   };
 
-  getFigureById(id: number): Observable<Figure> {
+  getFigureById(id: string): Observable<Figure> {
     return this.http.get<Figure>(this.baseUrl + 'allfigures/' + id)
   }
 
@@ -36,25 +35,13 @@ export class BackendserviceService {
         });
   }
 
-  deleteFigure(id: number): Observable<Figure> {
+  deleteFigure(id: string): Observable<Figure> {
     return this.http.delete<Figure>(this.baseUrl + 'figures/' + id)
   }
 
-  updateFigure(id: number, figure: Figure):
-    Observable<Figure> {
-    return this.http.put<Figure>(this.baseUrl + 'figures/' + id, figure);
+  updateFigure(id: string, figure: Figure): Observable<Figure> {
+    return this.http.patch<Figure>(this.baseUrl + 'figures/' + id, figure);
   }
-
-  // updatefigure(id: string, figure: Figure): void {
-  //   this.http.patch<Figure>(this.baseUrl + 'editfigure/' + id, figure)
-  //     .subscribe(
-  //       response => {
-  //         console.log(response);
-  //         console.log(response._id);
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       });
 
 
   //SET--------------------------------------------------------------------------------------
@@ -63,11 +50,11 @@ export class BackendserviceService {
     return this.http.get<Set[]>(this.baseUrl + 'allsets');
   };
 
-  deleteSet(id: number): Observable<Set> {
+  deleteSet(id: string): Observable<Set> {
     return this.http.delete<Set>(this.baseUrl + 'sets/' + id)
   }
 
-  getSetById(id: number): Observable<Set> {
+  getSetById(id: string): Observable<Set> {
     return this.http.get<Set>(this.baseUrl + 'allsets/' + id)
   }
 
@@ -80,5 +67,10 @@ export class BackendserviceService {
         error => {
           console.log(error);
         });
+  }
+
+  updateSet(id: string, set: Set):
+    Observable<Set> {
+    return this.http.patch<Set>(this.baseUrl + 'sets/' + id, set);
   }
 }

@@ -29,7 +29,7 @@ export class AddFigureComponent implements OnInit {
         purchasePriceControl: ['',Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
         salePriceControl: ['', Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
       });
-    this.figure = {_id: 0, name: '', topic: '', salePrice: 0 , purchasePrice: 0, articleNumber: ''};
+    this.figure = {_id: '0', name: '', topic: '', salePrice: 0 , purchasePrice: 0, articleNumber: ''};
   }
 
   ngOnInit(): void {}
@@ -47,6 +47,7 @@ export class AddFigureComponent implements OnInit {
     console.log(this.figure);
     this.bs.createfigure(this.figure);
     this.router.navigateByUrl('/allfigures');
+
   }
 
   cancel(): void {

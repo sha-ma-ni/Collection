@@ -1,12 +1,12 @@
-import {Component} from '@angular/core';
-import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {User} from "../shared/data";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {Router} from "@angular/router";
-import {ConfirmComponent} from "../confirm/confirm.component";
-import {response} from "express";
-import {AuthService} from "../shared/auth.service";
-import {Location} from "@angular/common";
+import { Component } from "@angular/core";
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { User } from "../shared/data";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { Router} from "@angular/router";
+import { ConfirmComponent } from "../confirm/confirm.component";
+import { response } from "express";
+import { AuthService } from "../shared/auth.service";
+import { Location } from "@angular/common";
 
 export interface DialogData {
   headline: string;

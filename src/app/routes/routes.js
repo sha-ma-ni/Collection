@@ -188,7 +188,7 @@ router.delete('/sets/:id', async (req, res) => {
 });
 
 // update one set
-router.put('/sets/:id', async (req, res) => {
+router.patch('/sets/:id', async (req, res) => {
   try {
     const setUpd = await Set.findOne({_id: req.params.id})
 
@@ -275,28 +275,28 @@ router.delete('/figures/:id', async (req, res) => {
 });
 
 // update one figure
-router.put('/figures/:id', async (req, res) => {
+router.patch('/figures/:id', async (req, res) => {
   try {
-    const figureUpd = await Figure.findOne({_id: req.params.id})
+    const figure = await Figure.findOne({_id: req.params.id})
 
     if (req.body.name) {
-      figureUpd.name = req.body.name
+      figure.name = req.body.name
     }
 
     if (req.body.articleNumber) {
-      figureUpd.articleNumber = req.body.articleNumber
+      figure.articleNumber = req.body.articleNumber
     }
 
     if (req.body.purchasePrice) {
-      figureUpd.purchasePrice = req.body.purchasePrice
+      figure.purchasePrice = req.body.purchasePrice
     }
 
     if (req.body.salePrice) {
-      figureUpd.salePrice = req.body.salePrice
+      figure.salePrice = req.body.salePrice
     }
 
-    await Figure.updateOne({_id: req.params.id}, figureUpd);
-    res.send(figureUpd)
+    await Figure.updateOne({_id: req.params.id}, figure);
+    res.send(figure)
   } catch {
     res.status(404)
     res.send({error: "Figure does not exist!"})

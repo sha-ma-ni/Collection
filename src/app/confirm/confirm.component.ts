@@ -1,6 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {DialogData} from "../register/register.component";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import { DialogData } from "../register/register.component";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Component, Inject } from "@angular/core";
 
 
 @Component({

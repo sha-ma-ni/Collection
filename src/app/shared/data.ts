@@ -1,5 +1,5 @@
 export interface Figure {
-  _id: number,
+  _id: string,
   name: string,
   topic: string,
   articleNumber: string,
@@ -9,7 +9,7 @@ export interface Figure {
 }
 
 export interface Set {
-  _id: number,
+  _id: string,
   name: string,
   topic: string,
   articleNumber: string,

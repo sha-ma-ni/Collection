@@ -1,16 +1,11 @@
-import {Component, OnInit} from '@angular/core';
 import {Figure} from "../shared/data";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BackendserviceService} from "../shared/backendservice.service";
-
 import {NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
-
-
-
-
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-figures',
@@ -21,7 +16,6 @@ import {MatDialog} from "@angular/material/dialog";
 export class FiguresComponent implements OnInit {
   figures!: Figure [];
   figure!: Figure;
-  selectedId: number;
   form: FormGroup;
   closeResult = '';
   error: HttpErrorResponse;
@@ -52,17 +46,7 @@ export class FiguresComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // this.readAllfigures();
-    // this.selectedId = Number(this.route.snapshot.paramMap.get('id'));
-    // this.readOneFig(this.selectedId);
-
-
-    this.selectedId = Number(this.route.snapshot.paramMap.get('id'))
-    if(this.selectedId === 0) {
-      this.readAllfigures();
-    } else if (this.selectedId > 0) {
-      this.readOneFig(this.selectedId);
-    }
+    this.readAllfigures();
   }
 
   readAllfigures(): void {
@@ -79,11 +63,12 @@ export class FiguresComponent implements OnInit {
   }
 
   //to help ngFor identify unique items in array
-  trackByData(index: number, figure: Figure): number {
+
+  trackByData(index: number, figure: Figure): string {
     return figure._id;
   }
 
-  deleteFigure(id: number): void {
+  deleteFigure(id: string): void {
     this.bs.deleteFigure(id).subscribe(
       {
         next: (response) => {
@@ -95,8 +80,7 @@ export class FiguresComponent implements OnInit {
     window.location.reload();
   }
 
-  openModal(content: any, id: number): void {
-
+  openModal(content: any, id: string): void {
     this.readOneFig(id);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -108,7 +92,7 @@ export class FiguresComponent implements OnInit {
     });
   }
 
-  readOneFig(id: number): void {
+  readOneFig(id: string): void {
     this.bs.getFigureById(id).subscribe({
       next: (response) => {
         this.figure = response;
@@ -127,27 +111,7 @@ export class FiguresComponent implements OnInit {
     });
   }
 
-  openEditModal(content: any, id: number): void {
-    this.readOneFig(id);
-    this.modalService.open(content, {ariaLabelledBy: 'edit-modal-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      if (result === 'update') {
-        this.updateFigure(this.figure?._id);
-      } else {
-        location.reload();
-      }
-    });
+  reload() {
+    location.reload();
   }
-
-  updateFigure(id: number) {
-    this.figure._id = id;
-    this.bs.updateFigure(this.figure._id, this.figure);
-    this.router.navigateByUrl('/allfigures');
-  }
-
-
-
-
-
-
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Figure, Set} from "../shared/data";
 import {BackendserviceService} from "../shared/backendservice.service";
-
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-mainpage',
@@ -10,24 +10,33 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./mainpage.component.css']
 })
 export class MainpageComponent implements OnInit {
-  figure!: Figure;
+
   figures!: Figure [];
-  set!: Set;
   sets!: Set [];
   closeResult = '';
+  @Input() form: FormGroup;
 
   constructor(
     private bs: BackendserviceService,
     private modalService: NgbModal,
-  ) { }
+    private fb: FormBuilder,
+  ) {
+    this.form = this.fb.group({
+      nameControl: ['', Validators.required],
+      topicControl: ['', Validators.required],
+      articleNumberControl: ['', Validators.required],
+      purchasePriceControl: ['',Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
+      salePriceControl: ['',Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
+    });
+  }
 
   ngOnInit(): void {
     this.readAllfigures();
     this.readAllSets();
   }
 
-  trackByDatafig(index: number, figure: Figure): number { return figure._id; }
-  trackByDataSet(index: number, set: Set): number { return set._id; }
+  trackByDatafig(index: number, figure: Figure): string { return figure._id; }
+  trackByDataSet(index: number, set: Set): string { return set._id; }
 
   readAllfigures(): void {
     this.bs.getAllfigures().subscribe(
@@ -53,23 +62,5 @@ export class MainpageComponent implements OnInit {
         error: (err) => console.log(err),
         complete: () => console.log('getAll() completed')
       })
-  }
-
-  readOneFigure(id: number): void {
-    this.bs.getFigureById(id).subscribe({
-      next: (response) => {
-        this.figure = response;
-        return this.figure;
-      },
-      error: (err) => console.log(err),
-      complete: () => console.log('readOne() completed')
-    });
-  }
-
-  openModalFig(editModal:any, id: number) {
-    this.readOneFigure(id);
-    this.modalService.open(editModal, {ariaLabelledBy: 'edit-modal-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-  })
   }
 }

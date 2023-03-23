@@ -6,8 +6,8 @@
   <link href="figures.component.css" rel="stylesheet">
 </head>
 <body>
-<div id="main"  style="background-image:  url('./../../assets/toys-950148_1920.jpg'); background-size: cover; height: 98%"> <!-- *ngIf="selectedfigureId == 0"-->
-<div *ngIf="selectedId == 0">
+<div id="main"  style="background-image:  url('../../assets/toys-950148_1920.jpg'); background-size: cover; height: 98%"> <!-- *ngIf="selectedfigureId == 0"-->
+<div >
   <div id="header" style="background: rgba(217, 217, 217, 0.5)">
     <app-header></app-header>
   </div>
@@ -25,8 +25,7 @@
         <th class="tg-tit">Serie</th>
         <th class="tg-tit">Purchase Price</th>
         <th class="tg-tit">Sale Price</th>
-        <th class="tg-tit">
-          <span >Edit</span></th>
+        <th class="tg-tit"><span >Edit</span></th>
         <th class="tg-tit"><span >Delete</span></th>
       </tr>
       </thead>
@@ -37,64 +36,31 @@
         <td class="tg-dat">{{figure.articleNumber}}</td>
         <td class="tg-dat">{{figure.topic}}</td>
         <td class="tg-dat">{{figure.purchasePrice}}</td>
-        <td class="tg-dat">{{figure.salePrice}}</td>
+        <td
+          class="tg-dat">{{figure.salePrice}}</td>
         <td>
-         <a > <i-bs class="bi bi-pencil-square px-5 tg-none" (click)="openEditModal(editModal, figure._id)" ></i-bs></a>
+         <a id="update"> <i-bs class="bi bi-pencil-square px-5 tg-none" [routerLink]="['/figures',figure._id]" ></i-bs></a>
         </td>
 <!--        <td class="tg-none"><a><i-bs (click)="openEditDialog()" class="bi bi-pencil-square px-5"></i-bs></a>-->
 <!--        </td>-->
         <td class="tg-none" style="width: 16px; text-align: center"><i-bs (click)="openModal(content, figure._id)" class=" bi bi-trash px-5 "></i-bs></td>
+
       </tr>
+
       </tbody>
     </table>
+    <ng-container *ngIf="figures?.length == 0">
+      <p style="text-align: center; color: #1C365E;  font-size: x-large">You don't have any figures..</p>
+    </ng-container>
   </div>
 </div>
 </div>
 </body>
 
-
-    <!-- UPDATE-->
-    <div *ngIf="selectedId > 0" class="container">
-      <div *ngIf="error">
-        <p>{{error?.message}}</p>
-        <p>{{error?.status}}</p>
-      </div>
-<!--      <div *ngIf="figure">-->
-<!--        <app-editfigure [ngModel]="figure" (updateEvent)="updateFigure($event)"></app-editfigure>-->
-<!--      </div>-->
-    </div>
-
-
-<ng-template id="editModal" #editModal let-modal>
-<!--  <div *ngIf="selectedId>0" class="container">-->
-<!--    <div *ngIf="error">-->
-<!--      <p>{{error?.message}}</p>-->
-<!--      <p>{{error?.status}}</p>-->
-<!--    </div>-->
-  <div class="modal-header" style="background-color: #1C365E">
-    <h4 class="modal-title" id="edit-modal-title" style="font-family: Courier New; color: #F6F6F6; font-size: 18px;">Item update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('cancel')">X</button>
-  </div>
-
-<!--  <div *ngIf="selectedId > 0" class="container">-->
-<!--    <div *ngIf="error">-->
-<!--      <p>{{error?.message}}</p>-->
-<!--      <p>{{error?.status}}</p>-->
-<!--    </div>-->
-    <div *ngIf="figure">
-      <app-editfigure [(ngModel)]="figure" ngDefaultControl></app-editfigure>
-      <div class="=col-lg-6 col-sm-6">
-      </div>
-    </div>
-<!--  </div>-->
-
-<!--  <div class="=col-lg-6 col-sm-6">-->
-<!--    <button id="update" type="submit" class="btn" [disabled]="!form.valid">Update</button>-->
-<!--  </div>-->
-<!--  </div>-->
-</ng-template>
-
-
+<div *ngIf="'update'">
+  <p>Item was updated!</p>
+  <button (click)="reload()">OK</button>
+</div>
 
 <!--    Delete. Modal Dialog-->
 <ng-template #content let-modal id="modal-content-wrapper">

@@ -29,7 +29,7 @@ export class SetComponent implements OnInit {
         purchasePriceControl: ['',Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
         salePriceControl: ['', Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
       });
-    this.set = {_id: 0, name: '', topic: '', salePrice: 0 , purchasePrice: 0, articleNumber: ''};
+    this.set = {_id: '0', name: '', topic: '', salePrice: 0 , purchasePrice: 0, articleNumber: ''};
   }
 
   ngOnInit(): void {}

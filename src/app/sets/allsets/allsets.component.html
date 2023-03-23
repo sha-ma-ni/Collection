@@ -22,29 +22,194 @@
         <th class="tg-tit">Serie</th>
         <th class="tg-tit">Purchase Price</th>
         <th class="tg-tit">Sale Price</th>
-        <th class="tg-tit">
-          <span >Edit</span></th>
+        <th class="tg-tit"><span >Edit</span></th>
         <th class="tg-tit"><span >Delete</span></th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let set of sets; let i=index;  trackBy: trackByData">
-        <td class="tg-dat">{{i+1}}</td>
+        <td class="tg-none">{{i+1}}</td>
         <td class="tg-dat">{{set.name}}</td>
         <td class="tg-dat">{{set.articleNumber}}</td>
         <td class="tg-dat">{{set.topic}}</td>
         <td class="tg-dat">{{set.purchasePrice}}</td>
         <td class="tg-dat">{{set.salePrice}}</td>
-<!--        <td>-->
-<!--          <a > <i-bs class="bi bi-pencil-square px-5 tg-none" (click)="openEditModal(editModal, figure._id)" ></i-bs></a>-->
-<!--        </td>-->
-<!--        &lt;!&ndash;        <td class="tg-none"><a><i-bs (click)="openEditDialog()" class="bi bi-pencil-square px-5"></i-bs></a>&ndash;&gt;-->
-<!--        &lt;!&ndash;        </td>&ndash;&gt;-->
-<!--        <td class="tg-none" style="width: 16px; text-align: center"><i-bs (click)="openModal(content, figure._id)" class=" bi bi-trash px-5 "></i-bs></td>-->
+        <td>
+          <a > <i-bs class="bi bi-pencil-square px-5 tg-none" (click)="openEditModal(edit, set._id)" ></i-bs></a>
+        </td>
+        <!--        <td class="tg-none"><a><i-bs (click)="openEditDialog()" class="bi bi-pencil-square px-5"></i-bs></a>-->
+        <!--        </td>-->
+        <td class="tg-none" style="width: 16px; text-align: center"><i-bs (click)="openModal(content, set._id)" class=" bi bi-trash px-5 "></i-bs></td>
       </tr>
       </tbody>
     </table>
+    <ng-container *ngIf="sets?.length == 0">
+      <p style="text-align: center; color: #1C365E;  font-size: x-large">You don't have any sets..</p>
+    </ng-container>
   </div>
 
 </div>
 </body>
+
+
+<!--    Delete. Modal Dialog-->
+<ng-template #content let-modal id="modal-content-wrapper">
+  <div class="modal-header" style="background-color: #1C365E">
+    <h4 class="modal-title" id="modal-basic-title" style="font-family: Courier New; color: #F6F6F6; font-size: 18px;">Are you sure you want to delete this Item?</h4>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="form">
+
+      <div class="form-group row" id="mainbox">
+
+        <div class="col-8">
+
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="fName">Figure's name:</label>
+            </div>
+            <div class="col-7">
+              <input class="form-control row" type="text" name="Figurename" placeholder=" " id="fName"
+                     formControlName="nameControl" value="{{ set?.name }}" readonly  style="margin-left: 1%"></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="ANum">Serial Number: </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" type="text" name="ArticleNumber" placeholder=" " id="ANum"
+                     formControlName="articleNumberControl" value="{{ set?.articleNumber }}" readonly></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="topic">Series: </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" type="text" name="Topic" placeholder=" " id="topic"
+                     formControlName="topicControl" value="{{ set?.topic }}" readonly></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="bPrice">Buying price : </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" type="text" name="Buying  price" placeholder=" " id="bPrice"
+                     formControlName="purchasePriceControl" value="{{ set?.purchasePrice }}" readonly></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="sPrice">Selling price: </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" type="text" name="Selling price" placeholder=" " id="sPrice"
+                     formControlName="salePriceControl" value="{{ set?.salePrice }}" readonly></div>
+          </div>
+        </div>
+
+<!--                      <div class="form-group col-4">-->
+<!--                        <div class="imgUpload">-->
+<!--                          <div class="form-image">-->
+
+<!--                            &lt;!&ndash;Preview box&ndash;&gt;-->
+<!--                            <div class="preview">-->
+<!--                              <img src="" alt="" id="file-up-preview">-->
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash;input-box&ndash;&gt;-->
+<!--                            <div class="input-image">-->
+<!--                              <label for="file-up">Upload image</label>-->
+<!--                              <input type="file" id="file-up" accept="image/*" onchange="ShowPreview(event);">-->
+<!--                            </div>-->
+
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <div class="form-group row col-12">
+      <div class="=col-lg-6 col-sm-6">
+        <button type="button" class="btn" style="background-color: dimgray; margin-left: 60%; color: #F6F6F6" (click)="modal.close('cancel')">Cancel</button>
+      </div>
+      <div class="=col-lg-6 col-sm-6">
+        <button type="button" class="btn btn-danger" (click)="modal.close('delete')">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+
+<!--    UPDATE. Modal Dialog-->
+<ng-template #edit let-modal id="modal-content-wrapper2">
+  <div class="modal-header" style="background-color: #1C365E">
+    <h4 class="modal-title" id="modal-basic-title2" style="font-family: Courier New; color: #F6F6F6; font-size: 18px;">Update item</h4>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="formEdit" (ngSubmit)="update()">
+
+      <div class="form-group row" id="mainbox2">
+
+        <div class="col-8">
+
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="fName">Figure's name:</label>
+            </div>
+            <div class="col-7">
+              <input class="form-control row" type="text" name="Figurename" placeholder=" " id="fName2"
+                     formControlName="nameControl" value="{{ set?.name }}"style="margin-left: 1%"></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="ANum">Serial Number: </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" type="text" name="ArticleNumber" placeholder=" " id="ANum2"
+                     formControlName="articleNumberControl" value="{{ set?.articleNumber }}" ></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="topic">Series: </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" type="text" name="Topic" placeholder=" " id="topic2"
+                     formControlName="topicControl" value="{{ set?.topic }}" ></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="bPrice">Buying price : </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" type="text" name="Buying  price" placeholder=" " id="bPrice2"
+                     formControlName="purchasePriceControl" value="{{ set?.purchasePrice }}" ></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-5">
+              <label for="sPrice">Selling price: </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" type="text" name="Selling price" placeholder=" " id="sPrice2"
+                     formControlName="salePriceControl" value="{{ set?.salePrice }}"></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <div class="form-group row col-12">
+      <div class="=col-lg-6 col-sm-6">
+        <button type="button" class="btn" style="background-color: dimgray; margin-left: 60%; color: #F6F6F6" (click)="modal.close('cancel')">Cancel</button>
+      </div>
+      <div class="=col-lg-6 col-sm-6">
+        <button id="update" type="button" class="btn btn-danger" type="submit" [disabled]="!formEdit.valid">Update</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

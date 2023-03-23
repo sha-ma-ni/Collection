@@ -1,62 +1,79 @@
+<div id="main"
+     style="background-image:  url('../../../assets/toys-950148_1920.jpg'); background-size: cover; height: 98%;">
+  <div style="padding-top: 5%"></div>
+  <div class="container">
+    <div style="padding-top: 1%"></div>
+    <h4 class="title" id="basic-title"
+        style="border-radius: 5px; font-family: Courier New;background-color: #1C365E; color: #F6F6F6; font-size: 18px; padding: 3%; ">
+      Do you want to update this Item?</h4>
+    <div class="modal-body" *ngIf="figure">
+      <form [formGroup]="form" >
 
+        <div class="form-group row" id="mainbox">
 
-<div class="modal-body">
-  <form [formGroup]="form" (ngSubmit)="update()">
+          <div class="col-8">
 
-    <div class="form-group row" id="mainbox">
-
-      <div class="col-8">
-
-        <div class="form-group row">
-          <div class="col-5">
-            <label for="fName">Figure's name:</label>
+            <div class="form-group row">
+              <div class="col-5">
+                <label for="fName">Figure's name:</label>
+              </div>
+              <div class="col-7">
+                <input class="form-control row" type="text" name="Figurename" placeholder=" " id="fName"
+                       formControlName="nameControl" style="margin-left: 1%"></div>
+            </div>
+            <div class="form-group row">
+              <div class="col-5">
+                <label for="ANum">Serial Number: </label>
+              </div>
+              <div class="col-7">
+                <input class="form-control" type="text" name="ArticleNumber" placeholder=" " id="ANum"
+                       formControlName="articleNumberControl"></div>
+            </div>
+            <div class="form-group row">
+              <div class="col-5">
+                <label for="topic">Series: </label>
+              </div>
+              <div class="col-7">
+                <input class="form-control" type="text" name="Topic" placeholder=" " id="topic"
+                       formControlName="topicControl"></div>
+            </div>
+            <div class="form-group row">
+              <div class="col-5">
+                <label for="bPrice">Buying price : </label>
+              </div>
+              <div class="col-7">
+                <input class="form-control" type="text" name="Buying  price" placeholder=" " id="bPrice"
+                       formControlName="purchasePriceControl">
+                <!--            <div *ngIf="form.get('purchasingPrice_netControl').touched && form.get('purchasingPrice_netControl').errors" style="color: red">-->
+                <!--              Input must be a number.-->
+                <!--            </div>-->
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-5">
+                <label for="sPrice">Selling price: </label>
+              </div>
+              <div class="col-7">
+                <input class="form-control" type="text" name="Selling price" placeholder=" " id="sPrice"
+                       formControlName="salePriceControl">
+                <!--            <div *ngIf="form.get('purchasingPrice_netControl').touched && form.get('purchasingPrice_netControl').errors" style="color: red">-->
+                <!--              Input must be a number.-->
+                <!--            </div>-->
+              </div>
+            </div>
           </div>
-          <div class="col-7">
-            <input class="form-control row" type="text" name="Figurename" placeholder=" " id="fName"
-                   formControlName="nameControl" style="margin-left: 1%"></div>
+          <div class="col-4"></div>
         </div>
-        <div class="form-group row">
-          <div class="col-5">
-            <label for="ANum">Serial Number: </label>
-          </div>
-          <div class="col-7">
-            <input class="form-control" type="text" name="ArticleNumber" placeholder=" " id="ANum"
-                   formControlName="articleNumberControl" ></div>
-        </div>
-        <div class="form-group row">
-          <div class="col-5">
-            <label for="topic">Series: </label>
-          </div>
-          <div class="col-7">
-            <input class="form-control" type="text" name="Topic" placeholder=" " id="topic"
-                   formControlName="topicControl" ></div>
-        </div>
-        <div class="form-group row">
-          <div class="col-5">
-            <label for="bPrice">Buying price : </label>
-          </div>
-          <div class="col-7">
-            <input class="form-control" type="text" name="Buying  price" placeholder=" " id="bPrice"
-                   formControlName="purchasePriceControl" ></div>
-        </div>
-        <div class="form-group row">
-          <div class="col-5">
-            <label for="sPrice">Selling price: </label>
-          </div>
-          <div class="col-7">
-            <input class="form-control" type="text" name="Selling price" placeholder=" " id="sPrice"
-                   formControlName="salePriceControl" ></div>
-        </div>
-      </div>
+      </form>
     </div>
-  </form>
-</div>
-
-        <div class="=col-lg-6 col-sm-6">
-          <button id="update" class="btn" type="submit" [disabled]="!form.valid" style="background-color: #1C365E; margin-left: 80%; margin-bottom: 10%; color: #F6F6F6">Update</button>
+<div class="row col-lg-12 col-sm-6">
+        <div >
+          <button id="cancel" type="btn" (click)="cancel()">Cancel</button>
+          <button id="update" mat-raised-button type="submit" style="background-color: #1C365E; margin-left: 10%; color: #F6F6F6" (click)="update()">Update</button>
         </div>
-
-
+</div>
+</div>
+</div>
 
 
 

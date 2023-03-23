@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {BackendserviceService} from "../../shared/backendservice.service";
-import {Figure, Set} from "../../shared/data";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Set} from "../../shared/data";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
 import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
@@ -13,9 +13,11 @@ import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./allsets.component.css']
 })
 export class AllsetsComponent implements OnInit {
+  id: string;
   sets!: Set[];
   set!: Set;
   form: FormGroup;
+  formEdit: FormGroup;
   closeResult = '';
   error: HttpErrorResponse;
 
@@ -28,10 +30,10 @@ export class AllsetsComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: NgbModal,
   ) {
-    // Konfiguration des modalen Dialogs
-    config.backdrop = 'static';   // schliesst nicht, wenn man in das Fenster dahinter klickt
-    config.keyboard = false;      // Modaler Dialog kann nicht durch ESC beendet werden
-    // Formular fuer delete
+    // modal Dialog config
+    config.backdrop = 'static';   // will not be closed in the background
+    config.keyboard = false;      // Modal dialog cannot be terminated by ESC
+    // for delete
     this.form = this.fb.group(
       {
         nameControl: ['', Validators.required],
@@ -40,6 +42,14 @@ export class AllsetsComponent implements OnInit {
         purchasePriceControl: ['', Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
         salePriceControl: ['', Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
       });
+    //for update
+    this.formEdit = new FormGroup({
+      nameControl: new FormControl<string>(''),
+      topicControl: new FormControl<string>(''),
+      articleNumberControl: new FormControl<string>(''),
+      purchasePriceControl: new FormControl<number>(0),
+      salePriceControl: new FormControl<number>(0),
+    });
   };
 
   ngOnInit(): void {
@@ -60,10 +70,10 @@ export class AllsetsComponent implements OnInit {
       })
   }
   //to help ngFor identify unique items in array
-  trackByData(index: number, set: Set): number {
+  trackByData(index: number, set: Set): string {
     return set._id;
   }
-  deleteSet(id: number): void {
+  deleteSet(id: string): void {
     this.bs.deleteSet(id).subscribe(
       {
         next: (response) => {
@@ -75,7 +85,7 @@ export class AllsetsComponent implements OnInit {
     window.location.reload();
   }
 
-  readOneSet(id: number): void {
+  readOneSet(id: string): void {
     this.bs.getSetById(id).subscribe({
       next: (response) => {
         this.set = response;
@@ -93,4 +103,56 @@ export class AllsetsComponent implements OnInit {
       complete: () => console.log('readOneFig() completed, id: ' + this.set._id)
     });
   }
+
+  openModal(content: any, id: string): void {
+
+    this.readOneSet(id);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      if (result === 'delete') {
+        this.deleteSet(this.set?._id);
+      } else {
+        location.reload();
+      }
+    });
+  }
+
+  openEditModal(edit: any, id: string) {
+    this.readOneSet(id);
+    this.modalService.open(edit, {ariaLabelledBy: 'modal-basic-title2'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      if (result === 'update') {
+        this.update();
+      } else {
+        location.reload();
+      }
+    });
+  }
+
+  update(): void {
+    const values = this.formEdit.value;
+    this.set.name = values.nameControl!;
+    this.set.topic = values.topicControl!;
+    this.set.articleNumber = values.articleNumberControl!;
+    this.set.purchasePrice = values.purchasePriceControl!;
+    this.set.salePrice = values.salePriceControl!;
+
+    console.log(this.set);
+    // this.updateEvent.emit(this.set);
+    this.bs.updateSet(this.id, this.set)
+      .subscribe({
+          next: (response) => {
+            console.log(response);
+            console.log(response._id);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+          complete: () => console.log('update() completed')
+        }
+      );
+    this.router.navigateByUrl('/allsets');
+  }
+
+
 }

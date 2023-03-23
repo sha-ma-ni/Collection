@@ -2,7 +2,7 @@ import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/c
 import {
   FormGroup,
   FormBuilder,
-  FormControl,
+  FormControl, Validators,
 } from "@angular/forms";
 import {Figure} from "../../shared/data";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -16,34 +16,32 @@ import {Location} from '@angular/common';
   styleUrls: ['./editfigure.component.css']
 })
 export class EditfigureComponent implements OnInit {
-  id: number = 0;
-  @Output() figure!: Figure;
+  id: string = '';
+  figure!: Figure;
   figures!: Figure [];
-  @Input() control: FormControl;
-
-  // @Output() updateEvent = new EventEmitter<Figure>();
-
-  form: FormGroup = new FormGroup({
-    nameControl: new FormControl<string>(''),
-    topicControl: new FormControl<string>(''),
-    articleNumberControl: new FormControl<string>(''),
-    purchasePriceControl: new FormControl<number>(0),
-    salePriceControl: new FormControl<number>(0),
-  });
+  form: FormGroup;
 
   constructor(private route: ActivatedRoute,
               private bs: BackendserviceService,
               private fb: FormBuilder,
               private location: Location,
-              private router: Router,) {
+              private router: Router) {
+    this.form = this.fb.group({
+      nameControl: ['', Validators.required],
+      topicControl: ['', Validators.required],
+      articleNumberControl: ['', Validators.required],
+      purchasePriceControl: ['',Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
+      salePriceControl: ['',Validators.pattern("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")],
+    });
   }
 
   ngOnInit(): void {
-    // this.id = Number(this.route.snapshot.paramMap.get('id'));
-    // this.readOneFig(this.id);
+    this.id = this.route.snapshot.paramMap.get('id') || '';
+    this.readOneFig(this.id);
   }
 
-  readOneFig(id: number): void {
+
+  readOneFig(id: string): void {
     this.bs.getFigureById(id).subscribe({
       next: (response) => {
         this.figure = response;
@@ -63,16 +61,17 @@ export class EditfigureComponent implements OnInit {
   }
 
 
+
   update(): void {
     const values = this.form.value;
-    this.figure.name = values.nameControl!;
-    this.figure.topic = values.topicControl!;
-    this.figure.articleNumber = values.articleNumberControl!;
-    this.figure.purchasePrice = values.purchasePriceControl!;
-    this.figure.salePrice = values.salePriceControl!;
+    this.figure.name = values.nameControl;
+    this.figure.topic = values.topicControl;
+    this.figure.articleNumber = values.articleNumberControl;
+    this.figure.purchasePrice = values.purchasePriceControl;
+    this.figure.salePrice = values.salePriceControl;
 
     // console.log(this.figure);
-    // this.updateEvent.emit(this.figure);
+    //this.updateEvent.emit(this.figure);
     this.bs.updateFigure(this.id, this.figure)
       .subscribe({
           next: (response) => {
@@ -85,7 +84,9 @@ export class EditfigureComponent implements OnInit {
           complete: () => console.log('update() completed')
         }
       );
+
     this.router.navigateByUrl('/allfigures');
+
   }
 
 

@@ -11,12 +11,15 @@ import { EditfigureComponent} from "./figures/editfigure/editfigure.component";
 import { AuthguardGuard } from "./shared/authguard.guard";
 
 
+
 const routes: Routes = [
   {
     path: "home",
     component: MainpageComponent,
-    canActivate: [AuthguardGuard]
+    canActivate: [AuthguardGuard],
+
   },
+
   {
     path: "",
     component: LoginComponent
@@ -43,10 +46,10 @@ const routes: Routes = [
     component: AllsetsComponent
   },
   {
-    path: "edit",
-    component: EditfigureComponent
+    path: "figures/:id",
+    component: EditfigureComponent,
   },
-
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
