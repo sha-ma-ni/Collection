@@ -1,27 +1,25 @@
-# Collection
+# About the project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+[MongoDB](https://www.mongodb.com/) was used for the app as a database.
 
-## Development server
+This app is designed for collectors of MEGA Construx.
+With the app the user can keep track of their collection: sets and figures. The app helps to estimate the size and
+value of their collection.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![image](./src/assets/start.png)
 
-## Code scaffolding
+## Getting started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To config database create file `.env` with the following lines: \
+DB_CONNECTION = `your connection string` \
+DATABASE = `the name of your db`
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## How to start
 
-## Running unit tests
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. \
+Run `node server.js` to connect to the backend.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
