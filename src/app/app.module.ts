@@ -8,7 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddFigureComponent } from './figures/add-figure/add-figure.component';
-import { SetComponent } from './sets/allsets/set/set.component';
+import { SetComponent } from './sets/allsets/addset/set.component';
 import { AllsetsComponent } from './sets/allsets/allsets.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -31,9 +31,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
-
+import { EditsetComponent } from './sets/allsets/editset/editset.component';
 
 
 const icons = {
@@ -57,8 +55,7 @@ const icons = {
     DeleteFigureComponent,
     FiguresComponent,
     ConfirmComponent,
-
-
+    EditsetComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,8 +77,6 @@ const icons = {
     MatCardModule,
     BrowserAnimationsModule,
     NgbModule,
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

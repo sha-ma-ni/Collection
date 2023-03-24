@@ -32,7 +32,9 @@ export class SetComponent implements OnInit {
     this.set = {_id: '0', name: '', topic: '', salePrice: 0 , purchasePrice: 0, articleNumber: ''};
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   onSubmit(): void {
 
@@ -47,7 +49,11 @@ export class SetComponent implements OnInit {
 
     console.log(this.set);
     this.bs.createset(this.set);
-    this.router.navigateByUrl('/allsets');
+
+    this.router.navigate(['/allsets'])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
   cancel(): void {

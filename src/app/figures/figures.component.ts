@@ -105,13 +105,10 @@ export class FiguresComponent implements OnInit {
           salePriceControl: this.figure?.salePrice
         });
         return this.figure;
+
       },
       error: (err) => console.log(err),
       complete: () => console.log('readOneFig() completed' + this.figure._id)
     });
-  }
-
-  reload() {
-    location.reload();
   }
 }

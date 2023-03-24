@@ -1,12 +1,12 @@
 <div id="main"
-     style="background-image:  url('../../../assets/toys-950148_1920.jpg'); background-size: cover; height: 98%;">
+     style="background-image:  url('../../../../assets/toys-950148_1920.jpg'); background-size: cover; height: 98%;">
   <div style="padding-top: 5%"></div>
   <div class="container">
     <div style="padding-top: 1%"></div>
     <h4 class="title" id="basic-title"
         style="border-radius: 5px; font-family: Courier New;background-color: #1C365E; color: #F6F6F6; font-size: 18px; padding: 3%; ">
       Do you want to update this Item?</h4>
-    <div class="modal-body" *ngIf="figure">
+    <div class="modal-body" *ngIf="set">
       <form [formGroup]="form">
 
         <div class="form-group row" id="mainbox">
@@ -15,10 +15,10 @@
 
             <div class="form-group row">
               <div class="col-5">
-                <label for="fName">Figure's name:</label>
+                <label for="fName">Set's name:</label>
               </div>
               <div class="col-7">
-                <input class="form-control row" type="text" name="Figurename" placeholder=" " id="fName"
+                <input class="form-control row" type="text" name="Setname" placeholder=" " id="fName"
                        formControlName="nameControl" style="margin-left: 1%"></div>
             </div>
             <div class="form-group row">
@@ -74,20 +74,5 @@
         </button>
       </div>
     </div>
+  </div>
 </div>
-</div>
-
-
-
-<!--script for input-image-->
-<!--<script type="text/javascript">-->
-<!--  function ShowPreview(event) {-->
-<!--    if (event.target.files.length > 0) {-->
-<!--      let src = URL.createObjectURL(event.target.files[0]);-->
-<!--      let preview = document.getElementById("file-up-preview");-->
-<!--      preview.src = src;-->
-<!--      preview.style.display = "block";-->
-<!--    }-->
-<!--  }-->
-<!--</script>-->
-
