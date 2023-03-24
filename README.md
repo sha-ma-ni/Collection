@@ -9,6 +9,8 @@ value of their collection.
 
 ![image](./src/assets/start.png)
 
+![image](./src/assets/figures.png)
+
 ## Getting started
 
 To start you need to clone this repository `https://github.com/sha-ma-ni/Collection.git`
