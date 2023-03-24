@@ -10,9 +10,9 @@ value of their collection.
 ![image](./src/assets/start.png)
 
 ## Getting started
-```
+
 To start you need to clone this repository `https://github.com/sha-ma-ni/Collection.git`
-```
+
 To config database create file `.env` with the following lines: \
 DB_CONNECTION = `your connection string` \
 DATABASE = `the name of your db`
