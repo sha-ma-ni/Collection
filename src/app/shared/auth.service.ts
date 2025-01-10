@@ -14,15 +14,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
   }
-
+// Registriert einen neuen Benutzer
   registerUser(user: User): Observable<User> {
     return this.http.post<User>(this.baseUrl + 'adduser/', user);
   }
-
+// Überprüft, ob der Benutzer eingeloggt ist
   isLoggedin(): boolean {
     return this.loggedIn;
   }
-
+//Benutzer eingeloggt und gespeichert
   login(user: User): void {
     this.loggedIn = true;
     this.user = user;
@@ -32,11 +32,11 @@ export class AuthService {
     this.loggedIn = false;
     this.user = null;
   }
-
+//angemeldeter Benutzer
   getUser(): User | null {
     return this.user;
   }
-
+//prüft,ob Email bereits exestiert
   checkIfExists(email: null | undefined): Observable<User> {
     return this.http.get<User>(this.baseUrl + 'users/' + email);
   }
