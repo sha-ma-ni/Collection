@@ -79,7 +79,7 @@ export class FiguresComponent implements OnInit {
       });
     window.location.reload();
   }
-
+// Öffnet das Modal für das Bearbeiten oder Löschen einer Figur
   openModal(content: any, id: string): void {
     this.readOneFig(id);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -91,7 +91,7 @@ export class FiguresComponent implements OnInit {
       }
     });
   }
-
+// Lädt die Details einer einzelnen Figur anhand ihrer ID
   readOneFig(id: string): void {
     this.bs.getFigureById(id).subscribe({
       next: (response) => {
