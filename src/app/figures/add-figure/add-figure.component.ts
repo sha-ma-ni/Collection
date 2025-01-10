@@ -21,6 +21,7 @@ export class AddFigureComponent implements OnInit {
     private location: Location,
     private router: Router
   ) {
+    // Initialisiert das Formular
     this.form = this.fb.group(
       {
         nameControl: ['', Validators.required],
@@ -37,7 +38,7 @@ export class AddFigureComponent implements OnInit {
   onSubmit(): void {
     console.warn(this.form.value);
 
-    const values = this.form.value;
+    const values = this.form.value; // Holt sich die Werte des Formulares
     this.figure.name = values.nameControl;
     this.figure.topic = values.topicControl;
     this.figure.articleNumber = values.articleNumberControl;
