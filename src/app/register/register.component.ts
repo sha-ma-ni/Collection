@@ -19,9 +19,10 @@ export interface DialogData {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  hide = true;
-  user!: User;
+  hide = true;  //password sichtbar/unsichtbar
+  user!: User;  //Benutzerobjekt, das im Formular verwendet wird
 
+  //prüft, od Password und Wiederholung des Passwords übereinstimmen
   checkPasswords: ValidatorFn = (group: AbstractControl):
     ValidationErrors | null => {
     let pass = this.registerForm?.get('password')?.value;
@@ -55,6 +56,7 @@ export class RegisterComponent {
 
   onSubmit(): void {
     const values = this.registerForm.value;
+    // Erstellt ein neues User-Objekt
     this.user = {
       password: values.password!,
       email: values.email!,
@@ -62,6 +64,7 @@ export class RegisterComponent {
       lastname: values.lastname!
     };
     console.log(this.user)
+    // Registrierung des Benutzers über den AuthService
     this.as.registerUser(this.user).subscribe({
       next: (response) => {
         console.log('response', response)
@@ -78,6 +81,7 @@ export class RegisterComponent {
     this.router.navigateByUrl('');
   }
 
+  //pfüft,ob eine Email bereits exestiert
   checkIfExists(evt: any): void {
     let email = this.registerForm.get('email')?.value;
     this.as.checkIfExists(email).subscribe(
